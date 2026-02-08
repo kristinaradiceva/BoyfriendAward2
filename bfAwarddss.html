@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>💌 For Kiril From Kristina 💌</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: pink;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 100%;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 0 auto;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #ff4081;
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        .heart {
+            color: red;
+            font-size: 30px;
+            animation: heartbeat 1s infinite;
+        }
+        .box {
+            background: #fff0f5;
+            border: 3px solid #ff4081;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .box:active {
+            background: #ffebf3;
+            transform: scale(0.98);
+        }
+        button {
+            background: #ff4081;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            border-radius: 25px;
+            margin: 15px 0;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:active {
+            background: #ff0066;
+        }
+        .hidden {
+            display: none;
+            background: #fff0f5;
+            border: 3px dashed #ff4081;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            text-align: left;
+        }
+        .names {
+            color: #ff4081;
+            font-weight: bold;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="heart">💖</div>
+    <h1>For <span class="names">Kiril</span> 💕</h1>
+    <h3>From your <span class="names">Kristina</span></h3>
+
+    <p style="font-size: 18px; color: #666;">Tap everything you see below! 👇</p>
+
+    <div class="box" onclick="showMessage(this, 'Kiril, you have the most amazing smile! 😊')">
+        <div class="heart">💝</div>
+        <p>Tap for a compliment!</p>
+    </div>
+
+    <div class="box" onclick="showMessage(this, 'I love how you make me laugh every day! 😂')">
+        <div class="heart">❤️</div>
+        <p>Tap for another compliment!</p>
+    </div>
+
+    <div class="box" onclick="showMessage(this, 'You\'re my favorite person to talk to! 💬')">
+        <div class="heart">💗</div>
+        <p>Tap for one more!</p>
+    </div>
+
+    <div class="box" onclick="showMessage(this, 'Your hugs are the absolute best! 🤗')">
+        <div class="heart">💕</div>
+        <p>Last compliment, I promise!</p>
+    </div>
+
+    <button onclick="showSecret()">TAP FOR SECRET MESSAGE 💌</button>
+
+    <div id="secretMessage" class="hidden">
+        <h2>My Dearest Kiril,</h2>
+        <p>I made this just for you to remind you how special you are to me. Every moment with you is a treasure.</p>
+        <p>You make my life brighter just by being in it. Your smile, your laugh, your kindness - everything about you is amazing.</p>
+        <p>Thank you for being you. I'm so lucky to have you in my life!</p>
+        <p style="text-align: center; font-size: 20px; margin-top: 20px;">
+            With all my love,<br>
+            Your Kristina 💖
+        </p>
+    </div>
+
+    <div style="margin-top: 20px; color: #666; font-size: 16px;">
+        <p>Made with 💖 by Kristina for Kiril</p>
+        <p>Keep tapping for more love! 💕</p>
+    </div>
+</div>
+
+<script>
+    let tapCount = 0;
+
+    function showMessage(box, text) {
+        tapCount++;
+        box.innerHTML = '<div class="heart">💖</div><p><b>' + text + '</b></p>';
+        box.style.background = '#ffebf3';
+
+        // Add some hearts animation
+        for(let i = 0; i < 3; i++) {
+            setTimeout(() => {
+                let heart = document.createElement('div');
+                heart.innerHTML = '💖';
+                heart.style.position = 'fixed';
+                heart.style.fontSize = '25px';
+                heart.style.left = Math.random() * 80 + 10 + 'vw';
+                heart.style.top = '50vh';
+                heart.style.zIndex = '1000';
+                heart.style.animation = 'heartbeat 1s';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 1000);
+            }, i * 200);
+        }
+
+        // Update title with tap count
+        document.title = '💖 Kiril (' + tapCount + ' taps) 💖';
+    }
+
+    function showSecret() {
+        tapCount += 5;
+        const secret = document.getElementById('secretMessage');
+        secret.style.display = 'block';
+        document.querySelector('button').innerHTML = 'TAP TO HIDE MESSAGE 💖';
+        document.querySelector('button').onclick = function() {
+            secret.style.display = 'none';
+            this.innerHTML = 'TAP FOR SECRET MESSAGE 💌';
+            this.onclick = showSecret;
+        };
+
+        // Lots of hearts!
+        for(let i = 0; i < 15; i++) {
+            setTimeout(() => {
+                let heart = document.createElement('div');
+                heart.innerHTML = ['💖','❤️','💗','💕','💓','💞'][Math.floor(Math.random()*6)];
+                heart.style.position = 'fixed';
+                heart.style.fontSize = '30px';
+                heart.style.left = Math.random() * 80 + 10 + 'vw';
+                heart.style.top = Math.random() * 80 + 10 + 'vh';
+                heart.style.zIndex = '1000';
+                heart.style.animation = 'heartbeat 2s';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 2000);
+            }, i * 100);
+        }
+
+        document.title = '💌 Kiril - SECRET FOUND! 💌';
+    }
+
+    // Simple touch handling for mobile
+    document.addEventListener('touchstart', function(){}, {passive: true});
+</script>
+</body>
+</html>
